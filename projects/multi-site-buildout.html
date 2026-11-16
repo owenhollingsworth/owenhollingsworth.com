@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multi-site IT buildout | Owen Hollingsworth</title>
+<link rel="canonical" href="https://owenhollingsworth.com/projects/multi-site-buildout.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Owen Hollingsworth">
+<meta property="og:title" content="Multi-site IT buildout | Owen Hollingsworth">
+<meta property="og:description" content="My day job. I took a four-site business&#x27;s technology in-house and rebuilt most of it from the cabling up: networks, more than 50 cameras, access control and phones, including two sites where the…">
+<meta property="og:url" content="https://owenhollingsworth.com/projects/multi-site-buildout.html">
+<meta property="og:image" content="https://owenhollingsworth.com/images/og/multi-site-buildout.jpg">
+<meta property="og:image:alt" content="Multi-site IT buildout | Owen Hollingsworth">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="My day job. I took a four-site business&#x27;s technology in-house and rebuilt most of it from the cabling up: networks, more than 50 cameras, access control and phones, including two sites where the…">
+<link rel="preload" href="/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/barlow-condensed-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+<a class="site-name" href="/">Owen Hollingsworth</a>
+<nav class="site-nav" aria-label="Main"><a href="/#projects">Projects</a><a href="/#contact">Contact</a></nav>
+</div></header>
+<main>
+
+<div class="wrap">
+<p class="crumb"><a href="/#projects">All projects</a></p>
+<header class="project-head">
+<div><h1>Multi-site IT buildout</h1><p class="lede">My day job. I took a four-site business's technology in-house and rebuilt most of it from the cabling up: networks, more than 50 cameras, access control and phones, including two sites where the answer was long-range wireless instead of a trench.</p></div>
+<dl class="spec"><dt>Role</dt><dd>Sole IT, hired to bring everything in-house</dd><dt>Sites</dt><dd>4, from a two-access-point office to a 25-camera property</dd><dt>Users</dt><dd>12 staff and about 900 tenants</dd><dt>Network</dt><dd>4 routers and 12 switches (MikroTik, UniFi, Netgear), with VLANs at every site</dd><dt>Cameras</dt><dd>More than 50 installed, 44 of them UniFi</dd><dt>Phones</dt><dd>10 Yealink VoIP phones</dd><dt>Long-range wireless</dt><dd>Gigabit bridges across spans of up to 500 meters, at two sites</dd><dt>Remote management</dt><dd>Tailscale</dd><dt>Budget</dt><dd>About $40,000 to $45,000 in equipment and services</dd><dt>Skills</dt><dd>Network design, VLANs, Cat6 cabling, point-to-point and point-to-multipoint wireless, IP cameras, access control, VoIP, solar and battery power, Tailscale, vendor management, troubleshooting</dd></dl>
+</header>
+<div class="gallery"><figure><a href="/images/multi-site-buildout-01-diagram.png"><img src="/images/multi-site-buildout-01-diagram.png" alt="Network diagram: a router feeding six switches, with cameras, access points and phones on separate VLANs and a wireless bridge linking three buildings." loading="lazy" class="whole"></a><figcaption>A simplified diagram of the largest site's network.</figcaption></figure></div>
+<section class="body"><h2>The goal</h2><div class="prose"><p>A growing multi-site business had aging security and access control systems, and an outside IT provider that couldn't keep up. I was brought on to take everything possible in-house:</p><ul><li>Replace the access control systems with a subscription-free option</li><li>Rewire and replace every security camera</li><li>Upgrade the old Cat5 cabling to Cat6</li><li>Expand the existing wireless networks and add new ones</li><li>Bring a newly acquired location up to the same standard: new cameras, new cabling and a new network, rack included</li></ul></div></section><section class="body"><h2>How it works</h2><div class="prose"><p>The four sites differ a lot in size, so each network is built to fit:</p><ul><li><strong>The smallest,</strong> an executive office: one router, one switch, two access points and a couple of cameras.</li><li><strong>The largest:</strong> a router, six switches, 25 cameras, two access points, two VoIP phones, and a long-range wireless bridge with one base radio and two remote radios.</li><li><strong>The second largest:</strong> a router, four switches, 15 cameras, a VoIP phone, and a wireless bridge with one base radio and one remote radio.</li><li><strong>The fourth:</strong> a router, a switch, five access points, seven VoIP phones, a couple of cameras and several workstations.</li></ul><p>Every site is segmented the same way: public Wi-Fi, cameras and phones each get their own VLAN, apart from the office computers. I manage the access control software at every site remotely over Tailscale.</p></div></section><section class="body"><h2>Key decisions</h2><div class="prose"><ul><li><strong>Wireless instead of a trench.</strong> At the largest site, the original coax camera lines ran underground with no conduit in places, and a new $120,000 parking lot now sat between the buildings. Rather than cut into it, I linked three buildings with gigabit wireless bridges across spans of up to 500 meters. That replaced the coax cameras with IP cameras and extended the network across the whole property.</li><li><strong>Solar and battery for the remote cameras.</strong> At the second site, cameras were needed hundreds of meters from power and from the wired network. A wireless bridge, solar panels, a battery and a switch that handles both solar charging and PoE cost less than extending power and Ethernet that far.</li><li><strong>Bridges built to grow.</strong> I set up both bridges so they can run point-to-multipoint: another cluster of cameras needs one more remote radio, not a whole new link. At the first site I used that almost immediately, and added a second remote point.</li><li><strong>UniFi, tested at home first.</strong> I trialed UniFi's ecosystem in <a href="/projects/mini-lab.html">my own rack</a> before rolling it out at work.</li></ul></div></section><section class="body"><h2>Problems and fixes</h2><div class="prose"><ul><li><strong>A "faulty" access control panel that wasn't.</strong> After reports of a failing panel, I narrowed the fault to one wire that only worked some of the time. I traced it, found rodent damage and patched it. A replacement panel would have cost about $3,000, and it wouldn't have fixed anything.</li><li><strong>A switch written off after lightning.</strong> The previous provider gave up on a PoE switch after a lightning strike left it with dead ports. I got every port working again, PoE included, and it now runs in my <a href="/projects/mini-lab.html">mini-lab</a>.</li><li><strong>A server years past retirement.</strong> One of my first jobs was retiring a Windows Server 2003 machine. It was long past its last security update, and a waste of power besides.</li></ul></div></section><section class="body"><h2>Results</h2><div class="prose"><ul><li><strong>Four sites</strong> on networks I designed and installed: 4 routers, 12 switches, 9 access points and VLANs throughout.</li><li><strong>More than 50 cameras</strong> installed, 44 of them UniFi.</li><li><strong>About 900 tenants</strong> on the Wi-Fi and access control, and <strong>12 staff</strong> on 10 VoIP phones, with me as their support.</li><li><strong>About $40,000 to $45,000</strong> in equipment and services, planned and bought by me.</li><li><strong>A newly acquired location</strong> brought up to the same standard. It's now one of the four sites, and setting it up was a large part of my last year.</li></ul></div></section><section class="body"><h2>What's next</h2><div class="prose"><ul><li><strong>Tailscale for everyone.</strong> I manage these systems over Tailscale today. Next I'd extend it to every staff device that needs remote access.</li><li><strong>More camera clusters at the second site.</strong> Its bridge is ready for point-to-multipoint, so covering another remote corner of the property means adding a remote radio and a camera cluster.</li></ul></div></section>
+
+<nav class="next" aria-label="More projects"><a href="/projects/hackintosh-tablet.html">Previous: Hackintosh tablet</a><a href="/projects/mini-lab.html">Next: Mini-lab</a></nav>
+</div>
+
+</main>
+<footer class="site-foot"><div class="wrap">
+<span>© 2026 Owen Hollingsworth</span>
+<span><a href="mailto:mail@owenhollingsworth.com">mail@owenhollingsworth.com</a> &nbsp; <a href="https://www.linkedin.com/in/owen-hollingsworth/">LinkedIn</a> &nbsp; <a href="https://makerworld.com/en/@hollowen">MakerWorld</a></span>
+</div></footer>
+</body>
+</html>
